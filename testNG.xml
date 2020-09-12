@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite1" verbose="1" >
+  <test name="FunctionalTesting" >
+    <classes>
+       <class name="com.elabelz.qa.testcases.RegistrationPageTest">
+           <methods>
+               <include name="CreatingAndRegisteringAccount"/>
+           </methods>  
+       </class>     
+       <class name="com.elabelz.qa.testcases.LoginPageTest">
+           <methods>
+               <include name="loginTest"/>
+           </methods>  
+       </class>   
+       <class name="com.elabelz.qa.testcases.HomePageTest">
+           <methods>
+               <include name="verifyHomePageTitleTest"/>
+               <include name="addProductToCart"/>
+           </methods>  
+       </class>   
+    </classes>
+  </test>
+</suite>
