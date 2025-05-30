@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.elabelz.qa.base.TestBase;
 import com.elabelz.qa.util.TestUtil;
+import org.openqa.selenium.support.ui.WebDriverWait; // Added
+import org.openqa.selenium.support.ui.ExpectedConditions; // Added
 
 public class LoginPage extends TestBase{
 	
@@ -35,10 +37,18 @@ public class LoginPage extends TestBase{
 	}
 	
 	public HomePage login(String un, String pwd){
-		TestUtil.waitForAnElement(signInButton);
-		username.sendKeys(un);
-		password.sendKeys(pwd);
-		TestUtil.waitForAnElement(loginBtn);
+		WebDriverWait wait = TestUtil.getWebDriverWait(driver);
+
+		wait.until(ExpectedConditions.elementToBeClickable(signInButton)).click();
+
+		WebElement userField = wait.until(ExpectedConditions.visibilityOf(username));
+		userField.sendKeys(un);
+
+		WebElement passField = wait.until(ExpectedConditions.visibilityOf(password));
+		passField.sendKeys(pwd);
+
+		wait.until(ExpectedConditions.elementToBeClickable(loginBtn)).click();
+
 		return new HomePage();
 	}
 	

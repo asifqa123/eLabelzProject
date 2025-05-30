@@ -12,8 +12,9 @@ import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+// import org.openqa.selenium.chrome.ChromeOptions; // Appears unused
 import org.openqa.selenium.firefox.FirefoxDriver;
+import io.github.bonigarcia.wdm.WebDriverManager; // Added
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.AfterTest;
 
@@ -42,15 +43,24 @@ public class TestBase {
 	public static void initialization(){
 		String browserName = prop.getProperty("browser");
 		
-		if(browserName.equals("chrome")){
-			System.setProperty("webdriver.chrome.driver", "D:\\New_Workspace\\PageObjectModel-master\\src\\main\\java\\com\\elabelz\\drivers\\chromedriver.exe");	
+		if(browserName.equalsIgnoreCase("chrome")){ // Made comparison case-insensitive
+			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver(); 
 		}
-		else if(browserName.equals("FF")){
-			System.setProperty("webdriver.gecko.driver", "\\src\\main\\java\\com\\elabelz\\drivers\\geckodriver.exe");	
+		else if(browserName.equalsIgnoreCase("FF") || browserName.equalsIgnoreCase("firefox")){ // Made comparison case-insensitive and added "firefox"
+			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver(); 
 		}
-		
+		// Add other browsers here if needed, e.g., Edge
+		// else if(browserName.equalsIgnoreCase("edge")){
+		//	WebDriverManager.edgedriver().setup();
+		//	driver = new EdgeDriver();
+		// }
+		else {
+			System.out.println("Browser name not supported or not specified in config.properties, defaulting to Chrome.");
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();
+		}
 		
 		e_driver = new EventFiringWebDriver(driver);
 		// Now create object of EventListerHandler to register it with EventFiringWebDriver
@@ -59,8 +69,14 @@ public class TestBase {
 		driver = e_driver;
 		
 		driver.manage().window().maximize();
-//		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+		// Read timeout values from properties file
+		long implicitWait = Long.parseLong(prop.getProperty("implicitWait", "10")); // Default to 10 if not found
+		long pageLoadTimeout = Long.parseLong(prop.getProperty("pageLoadTimeout", "60")); // Default to 60 if not found
+		// long explicitWaitTimeout = Long.parseLong(prop.getProperty("explicitWaitTimeout", "20")); // Read for future use, default to 20
+
+		driver.manage().timeouts().pageLoadTimeout(pageLoadTimeout, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(implicitWait, TimeUnit.SECONDS);
 		
 		driver.get(prop.getProperty("url"));
 		

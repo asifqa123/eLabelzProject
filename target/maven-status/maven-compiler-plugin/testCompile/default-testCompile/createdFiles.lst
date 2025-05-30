@@ -1,3 +1,4 @@
 com/elabelz/qa/testcases/RegistrationPageTest.class
-com/elabelz/qa/testcases/HomePageTest.class
 com/elabelz/qa/testcases/LoginPageTest.class
+com/elabelz/qa/testcases/HomePageTest.class
+com/elabelz/qa/testcases/SearchPageTest.class

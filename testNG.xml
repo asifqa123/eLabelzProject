@@ -19,6 +19,7 @@
                <include name="addProductToCart"/>
            </methods>  
        </class>   
+       <class name="com.elabelz.qa.testcases.SearchPageTest"/>
     </classes>
   </test>
 </suite>

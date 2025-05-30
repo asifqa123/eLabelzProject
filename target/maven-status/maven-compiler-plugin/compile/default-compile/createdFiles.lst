@@ -6,3 +6,4 @@ com/elabelz/qa/util/TestUtil.class
 com/elabelz/qa/pages/RegistrationPage.class
 com/elabelz/qa/util/JsonTestDataReader.class
 com/elabelz/qa/pages/HomePage.class
+com/elabelz/qa/pages/SearchResultsPage.class
