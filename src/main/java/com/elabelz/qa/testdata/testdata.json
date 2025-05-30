@@ -1,0 +1,11 @@
+{
+  "loginData": [
+    { "testCase": "validLogin", "username": "user1", "password": "password1" }
+  ],
+  "registrationData": [
+    { "testCase": "newUser", "email": "testuser@example.com", "firstName": "Test", "lastName": "User" }
+  ],
+  "searchData": [
+    { "testCase": "searchProduct", "searchTerm": "dress", "expectedProduct": "Printed Dress" }
+  ]
+}

@@ -1,0 +1,7 @@
+/app/src/main/java/com/elabelz/qa/pages/RegistrationPage.java
+/app/src/main/java/com/elabelz/qa/util/TestUtil.java
+/app/src/main/java/com/elabelz/qa/pages/HomePage.java
+/app/src/main/java/com/elabelz/qa/util/WebEventListener.java
+/app/src/main/java/com/elabelz/qa/util/JsonTestDataReader.java
+/app/src/main/java/com/elabelz/qa/pages/LoginPage.java
+/app/src/main/java/com/elabelz/qa/base/TestBase.java

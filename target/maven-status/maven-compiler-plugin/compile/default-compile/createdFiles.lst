@@ -1,0 +1,8 @@
+com/elabelz/qa/base/TestBase.class
+com/elabelz/qa/util/JsonTestDataReader$1.class
+com/elabelz/qa/pages/LoginPage.class
+com/elabelz/qa/util/WebEventListener.class
+com/elabelz/qa/util/TestUtil.class
+com/elabelz/qa/pages/RegistrationPage.class
+com/elabelz/qa/util/JsonTestDataReader.class
+com/elabelz/qa/pages/HomePage.class
