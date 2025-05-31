@@ -83,6 +83,14 @@ public class HomePage extends TestBase {
 
     @FindBy(name = "submit_search")
     WebElement submitSearchButton;
+
+    @FindBy(xpath = "//img[@id='logo']") // Or a more appropriate locator if known
+    @CacheLookup // Optional, but good practice
+    WebElement siteLogo;
+
+    @FindBy(linkText = "Contact us") // Or use xpath: "//div[@id='contact-link']/a" or "//a[@title='Contact Us']"
+    @CacheLookup
+    WebElement contactUsLink;
 	
 	public String alertMessage;
 	public boolean alertFlag;
@@ -103,6 +111,24 @@ public class HomePage extends TestBase {
 	
 	public String verifyHomePageTitle(){
 		return driver.getTitle();
+	}
+
+	public boolean isLogoDisplayed() {
+	    try {
+	        return siteLogo.isDisplayed();
+	    } catch (org.openqa.selenium.NoSuchElementException e) {
+	        return false;
+	    }
+	}
+
+	public void clickContactUsLink() {
+	    // WebDriverWait wait = TestUtil.getWebDriverWait(driver); // If TestUtil.getWebDriverWait is accessible
+	    // wait.until(ExpectedConditions.elementToBeClickable(contactUsLink)).click();
+	    // For simplicity in this subtask, direct click. Add wait if issues arise.
+	    contactUsLink.click();
+	    // If it should return a new PageObject for ContactUsPage:
+	    // return new ContactUsPage();
+	    // But for now, void is fine as per plan.
 	}
 	
 	public void orderProduct() throws InterruptedException { // InterruptedException might not be needed after removing Thread.sleep

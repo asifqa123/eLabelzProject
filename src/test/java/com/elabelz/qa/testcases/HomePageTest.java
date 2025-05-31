@@ -46,6 +46,19 @@ public class HomePageTest extends TestBase {
 		Assert.assertEquals(homePage.alertFlag, true);
 	}
 	
+	@Test(priority=5)
+	public void verifyLogoDisplayedTest(){
+	    boolean isLogoVisible = homePage.isLogoDisplayed(); // This method will be added to HomePage.java later
+	    Assert.assertTrue(isLogoVisible, "Logo is not displayed on the home page");
+	}
+
+	@Test(priority=6)
+	public void verifyContactUsLinkTest(){
+	    homePage.clickContactUsLink(); // This method will be added to HomePage.java later
+	    String expectedContactUsTitle = "Contact us - My Store";
+	    String actualContactUsTitle = driver.getTitle();
+	    Assert.assertEquals(actualContactUsTitle, expectedContactUsTitle, "Contact Us page title does not match.");
+	}
 	
 	@AfterClass
 	public void tearDown(){
